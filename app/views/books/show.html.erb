@@ -1,0 +1,39 @@
+<h1>Book#<%=@book.id%></h1>
+<div id="book">
+<h4 >
+    <%= @book.title%>
+</h4>
+<p id="book-desc">
+    <%= @book.author%>
+</p>
+<h6>
+    <%=@book.category%>
+    
+</h6>
+<a href="/">Home</a>
+<%= link_to "Edit", edit_book_path(@book) %>
+<%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: 'Are you sure'} %>
+
+
+</div>
+
+<div>
+<h2>likes</h2>
+<%= render @book.likes %>
+<h2>Add a comment:</h2>
+</div>
+
+<h2>Add a comment:</h2>
+<%= form_with model: [ @book, @book.likes.build ] do |form| %>
+  <p>
+    <%= form.label :liker %><br>
+    <%= form.text_field :liker %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
